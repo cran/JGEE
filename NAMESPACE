@@ -1,0 +1,15 @@
+exportPattern("^[[:alpha:]]+")
+
+import(gee)
+import(MASS)
+importFrom("stats","as.formula","contrasts",
+"gaussian","model.extract","model.matrix",
+"nobs","quantile")
+
+S3method(print,JGee1)
+S3method(print,summary.JGee1)
+S3method(summary,JGee1)
+
+S3method(print,JGee2)
+S3method(print,summary.JGee2)
+S3method(summary,JGee2)
