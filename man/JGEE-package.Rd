@@ -2,7 +2,7 @@
 \alias{JGEE-package}
 \alias{JGEE}
 \docType{package}
-\title{Joint Genaralized Estimating Equation Solver}
+\title{Joint Generalized Estimating Equation Solver}
 
 \description{This package considers analysis of multivariate longitudinal data 
 via two different joint generalized estimating equation (JGEE) models. While the first JGEE model assumes regression 

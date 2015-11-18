@@ -67,20 +67,44 @@ The structures \code{"non_stat_M_dep"} and \code{"unstructured"} are valid only 
 \examples{
 \dontrun{
 
-formulaj2=cbind(stress,illness)~chlth+csex+education+employed+housize+
-married+mhlth+race
+#check the data
+data(MSCMsub)
 
-fitjgee2=JGee2(formula=formulaj2,id=mydata[,1],data=mydata,nr=2,
-na.action=NULL, family=list(binomial(link="logit"),binomial(link="logit")), 
-corstr1="exchangeable", Mv=NULL, corstr2="unstructured", 
-beta_int=NULL, R1=NULL, R2=NULL, scale.fix=FALSE, 
-scale.value=1, maxiter=25, tol=10^-3, silent=FALSE)
+#rename it
+mydata=MSCMsub
 
-summary(fitjgee2)
+#check the column labels for formula object
+head(mydata)
 
+#prepare formula object before model fitting
+formulaj2=cbind(stress,illness)~chlth+csex+education+employed+housize+married+mhlth+race
+
+#prepare family object before model fitting
+familyj2=list(binomial(link="logit"),binomial(link="logit"))
+
+#fit the model
+fitjgee2=JGee2(formula=formulaj2,id=mydata[,1],data=mydata,nr=2,na.action=NULL, 
+family=familyj2, corstr1="exchangeable", Mv=NULL, corstr2="unstructured", 
+beta_int=rep(0,18), R1=NULL, R2=NULL, scale.fix=FALSE, scale.value=1, maxiter=30, 
+tol=10^-3, silent=FALSE)
+
+#check the object names returned by fitjgee2
+names(fitjgee2)
+
+#check the object names returned by summary(fitjgee2)
 names(summary(fitjgee2))
 
+#get the coefficients
+summary(fitjgee2)$coefficients
+
+#get the within-subject correlation matrix
 summary(fitjgee2)$working.correlation1
+
+#get the multivariate response correlation matrix
+summary(fitjgee2)$working.correlation2
+
+#get the overall working correlation matrix
+summary(fitjgee2)$working.correlation
 
 }
 }
